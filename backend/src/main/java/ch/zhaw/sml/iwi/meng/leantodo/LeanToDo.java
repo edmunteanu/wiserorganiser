@@ -1,5 +1,7 @@
 package ch.zhaw.sml.iwi.meng.leantodo;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,8 +13,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Lecture;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.LectureAssignment;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.LectureAssignmentRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.LectureRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Role;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.RoleRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.StudyGroup;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.StudyGroupRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Timetable;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.TimetableRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDoRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.User;
@@ -34,6 +44,17 @@ public class LeanToDo implements CommandLineRunner {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private StudyGroupRepository groupRepository;
+
+    @Autowired
+    private TimetableRepository timetableRepository;
+
+    @Autowired
+    private LectureRepository lectureRepository;
+
+    @Autowired
+    private LectureAssignmentRepository assignmentRepository;
     
     @Autowired
     private ToDoRepository toDoRepository;
@@ -74,5 +95,28 @@ public class LeanToDo implements CommandLineRunner {
         toDo.setTitle("Reply to student");
         toDo.setOwner("user");
         toDoRepository.save(toDo);
+
+        StudyGroup group = new StudyGroup();
+        group.setName("W.BA.WIN.21HS.VZb");
+
+        Timetable timetable = new Timetable();
+        timetable.setSemester("HS2019");
+        timetableRepository.save(timetable);
+
+        group.getTimetables().add(timetable);
+        groupRepository.save(group);
+
+        Lecture lecture = new Lecture();
+        lecture.setName("FSWD");
+        lecture.setDescription("Full Stack Web Development");
+        lecture.setProfessor("Max Meisterhans");
+        lecture.setRoom("SI O4.04");
+        lectureRepository.save(lecture);
+
+        LectureAssignment assignment = new LectureAssignment();
+        assignment.setLecture(lecture);
+        assignment.setTimetable(timetable);
+        assignment.setDate(new Date());
+        assignmentRepository.save(assignment);
     }
 }
