@@ -21,6 +21,8 @@ import ch.zhaw.sml.iwi.meng.leantodo.entity.Role;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.RoleRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.StudyGroup;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.StudyGroupRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.TaskRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Timetable;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.TimetableRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
@@ -49,6 +51,9 @@ public class LeanToDo implements CommandLineRunner {
 
     @Autowired
     private TimetableRepository timetableRepository;
+
+    @Autowired
+    private TaskRepository taskRepository;
 
     @Autowired
     private LectureRepository lectureRepository;
@@ -101,6 +106,15 @@ public class LeanToDo implements CommandLineRunner {
 
         Timetable timetable = new Timetable();
         timetable.setSemester("HS2019");
+
+        Task task = new Task();
+        task.setName("Task 1");
+        task.setDescription("Description task 1");
+        task.setDate(new Date());
+        task.setDone(false);
+        taskRepository.save(task);
+        
+        timetable.getTasks().add(task);
         timetableRepository.save(timetable);
 
         group.getTimetables().add(timetable);

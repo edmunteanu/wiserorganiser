@@ -21,6 +21,9 @@ public class Timetable {
     @OneToMany(mappedBy = "timetable")
     private List<LectureAssignment> lectureAssignments = new ArrayList<>();
 
+    @OneToMany
+    private List<Task> tasks = new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -43,5 +46,13 @@ public class Timetable {
 
     public void setLectureAssignments(List<LectureAssignment> lectureAssignments) {
         this.lectureAssignments = lectureAssignments;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
