@@ -18,11 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        redirect: 'timetable'
+        redirect: 'timetables'
       },
       {
-        path: 'timetable',
-        component: () => import('@/views/TimetablePage.vue')
+        path: 'timetables',
+        component: () => import('@/views/TimetablesPage.vue')
       },
       {
         path: 'tasks',

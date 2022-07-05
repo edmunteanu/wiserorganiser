@@ -3,7 +3,7 @@
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="timetable" href="/tabs/timetable">
+        <ion-tab-button tab="timetables" href="/tabs/timetables">
           <ion-icon :icon="calendarOutline" />
           <ion-label>Stundenplan</ion-label>
         </ion-tab-button>
