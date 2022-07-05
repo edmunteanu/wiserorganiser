@@ -31,7 +31,7 @@ public class ProjectController {
     }
 
     public void addToDo(Long projectId, ToDo toDo, String owner) {
-        Project project = projectRepository.getOne(projectId);
+        Project project = projectRepository.getById(projectId);
         if(project == null || !project.getOwner().equals(owner)) {
             return;
         }  
