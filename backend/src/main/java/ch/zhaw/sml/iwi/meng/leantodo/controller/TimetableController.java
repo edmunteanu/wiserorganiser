@@ -1,7 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class TimetableController {
         return timetableRepository.findAll();
     }
     
-    public Optional<Timetable> getTimetable(Long id) {
-        return timetableRepository.findById(id);
+    public Timetable getTimetable(Long id) {
+        return timetableRepository.getById(id);
     }
 }

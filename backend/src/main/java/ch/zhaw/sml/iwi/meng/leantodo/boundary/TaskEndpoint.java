@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.zhaw.sml.iwi.meng.leantodo.controller.TimetableController;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Timetable;
+import ch.zhaw.sml.iwi.meng.leantodo.controller.TaskController;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 
 @RestController
-public class TimetableEndpoint {
+public class TaskEndpoint {
 
     @Autowired
-    private TimetableController timetableController;
+    private TaskController taskController;
 
-    @RequestMapping(path = "/api/timetables", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/timetables/{id}/tasks", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public List<Timetable> getTimetables() {
-        return timetableController.getTimetables();
+    public List<Task> getTasks(@RequestParam(name="id") Long timetableId) {
+        return taskController.getTasks(timetableId);
     }
     
-    @RequestMapping(path = "/api/timetables/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/tasks/{id}", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public Timetable getTimetable(@RequestParam(name="id") Long id) {
-        return timetableController.getTimetable(id);
+    public Task getTask(@RequestParam(name="id") Long id) {
+        return taskController.getTask(id);
     }
 }
