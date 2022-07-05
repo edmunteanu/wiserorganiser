@@ -16,7 +16,7 @@
                 </ion-toolbar>
             </ion-header>
             <div id="container" class="ion-padding">
-                <p>Lecture name: {{ name }}</p>
+                <p>Lecture ID: {{ lecture.id }}</p>
             </div>
 
         </ion-content>
@@ -27,6 +27,7 @@
 import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { useRoute } from "vue-router";
+import { useLectures } from "@/composables/useLectures";
 
 export default defineComponent({
     name: 'LectureDetailsPage',
@@ -41,10 +42,13 @@ export default defineComponent({
     },
     setup() {
         const route = useRoute()
-        const { name } = route.params;
+        const { id } = route.params;
+        const { lecture } = useLectures(id);
+
 
         return {
-            name
+            id,
+            lecture
         }
     }
 })

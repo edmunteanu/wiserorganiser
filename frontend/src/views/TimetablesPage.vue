@@ -13,8 +13,8 @@
             </ion-header>
             <div id="container" class="ion-padding">
                 <p><strong>Choose your timetable</strong></p>
-                <ion-list :key="timetable" v-for="timetable in timetables">
-                    <ion-item>
+                <ion-list>
+                    <ion-item v-bind:router-link="'/tabs/timetables/' + timetable.id" button :key="timetable" v-for="timetable in timetables">
                         <ion-label>{{ timetable.name }}</ion-label>
                     </ion-item>
                 </ion-list>

@@ -2,6 +2,9 @@
     <ion-page>
         <ion-header>
             <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-back-button></ion-back-button>
+                </ion-buttons>
                 <ion-title>Timetable</ion-title>
             </ion-toolbar>
         </ion-header>
@@ -21,7 +24,7 @@
                             </ion-card>
                         </ion-col>
                         <ion-col size="9">
-                            <ion-card v-bind:router-link="'/tabs/lecture/' + lecture.name" button>
+                            <ion-card v-bind:router-link="'/tabs/lecture/' + lecture.id" button>
                                 <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
                                 <ion-card-title>{{ lecture.name }}</ion-card-title>
                             </ion-card>
@@ -53,7 +56,9 @@ import {
     IonList,
     IonButton,
     IonInput,
-    IonCard
+    IonCard,
+    IonButtons,
+    IonBackButton
 } from "@ionic/vue";
 
 export default {
@@ -67,7 +72,9 @@ export default {
         IonCard,
         IonGrid,
         IonRow,
-        IonCol
+        IonCol,
+        IonButtons,
+        IonBackButton
     },
     data() {
         return {

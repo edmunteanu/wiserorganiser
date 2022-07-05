@@ -28,9 +28,17 @@ const routes: Array<RouteRecordRaw> = [
         path: 'tasks',
         component: () => import('@/views/TasksPage.vue')
       },
+      { 
+        path: 'tasks/:id',
+        component: () => import('@/views/TaskDetailsPage.vue'),
+      },
       {
-        path: 'lecture/:name',
+        path: 'lecture/:id',
         component: () => import('@/views/LectureDetailsPage.vue'),
+      },
+      {
+        path: 'timetables/:id',
+        component: () => import('@/views/TimetableDetailsPage.vue'),
       },
     ]
   }
