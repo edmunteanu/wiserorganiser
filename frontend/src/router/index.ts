@@ -27,7 +27,11 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'tasks',
         component: () => import('@/views/TasksPage.vue')
-      }
+      },
+      {
+        path: 'lecture/:name',
+        component: () => import('@/views/LectureDetailsPage.vue'),
+      },
     ]
   }
 ]

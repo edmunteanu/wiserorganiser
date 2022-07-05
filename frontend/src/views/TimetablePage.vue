@@ -11,14 +11,29 @@
                     <ion-title size="large">Timetable</ion-title>
                 </ion-toolbar>
             </ion-header>
-            <div id="container">
-                <p><strong>List of all Lectures</strong></p>
-                <ion-list>
-                    <ion-card v-bind:key="lecture" v-for="lecture in lectures">
+            <div id="container" class="ion-padding">
+                <p><strong>Your Timetable</strong></p>
+                <ion-grid>
+                    <ion-row v-bind:key="lecture" v-for="lecture in lectures">
+                        <ion-col size="3">
+                            <ion-card>
+                                <ion-card-title>{{ lecture.time }}</ion-card-title>
+                            </ion-card>
+                        </ion-col>
+                        <ion-col size="9">
+                            <ion-card v-bind:router-link="'/tabs/lecture/' + lecture.name" button>
+                                <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
+                                <ion-card-title>{{ lecture.name }}</ion-card-title>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <!-- <ion-list>
+                    <ion-card v-bind:router-link="'/tabs/lecture/' + lecture.name" button v-bind:key="lecture" v-for="lecture in lectures">
                         <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
                         <ion-card-title>{{ lecture.name }}</ion-card-title>
                     </ion-card>
-                </ion-list>
+                </ion-list> -->
             </div>
         </ion-content>
     </ion-page>
@@ -49,8 +64,10 @@ export default {
         IonTitle,
         IonContent,
         IonPage,
-        IonList,
-        IonCard
+        IonCard,
+        IonGrid,
+        IonRow,
+        IonCol
     },
 
     data() {
@@ -58,6 +75,7 @@ export default {
             lectures: [
                 {
                     id: "1",
+                    time: "8:00 - 9:00",
                     name: "Web Engineering",
                     description: "We will build stuff",
                     professor: "Max Meisterhans",
@@ -65,6 +83,7 @@ export default {
                 },
                 {
                     id: "2",
+                    time: "9:00 - 10:00",
                     name: "GPI",
                     description: "We will build more stuff",
                     professor: "Peter Heinrich",
@@ -72,6 +91,7 @@ export default {
                 },
                 {
                     id: "3",
+                    time: "10:00 - 11:00",
                     name: "Statistik",
                     description: "We will calculate stuff",
                     professor: "Statistik Dozent",
