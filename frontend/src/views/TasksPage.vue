@@ -14,7 +14,7 @@
       <div id="container">
         <ion-list>
           <ion-title class="ion-padding"><strong>Übersicht</strong></ion-title>
-          <ion-card v-bind:router-link="'/tabs/tasks/' + task.title" button v-bind:key="task" v-for="task in tasks">
+          <ion-card v-bind:router-link="'/tabs/tasks/' + task.id" button v-bind:key="task" v-for="task in tasks">
             <ion-card-header>
               <ion-label>
                   <ion-checkbox style="float: right; vertical-align: middle" ></ion-checkbox>
@@ -71,18 +71,22 @@ export default {
     return {
       tasks: [
         {
+          id: 1,
           title: "Do something",
           date: "12.10.2022 / 14.00 - 16.00 Uhr",
         },
         {
+          id: 2,
           title: "Do another thing",
           date: "17.10.2022 / 15.00 - 16.00 Uhr",
         },
         {
+          id: 3,
           title: "Do some things",
           date: "18.12.2022 / 09.00 - 11.00 Uhr",
         },
         {
+          id: 4,
           title: "Do it",
           date: "22.12.2022 / 09.00 - 11.00 Uhr",
         },
