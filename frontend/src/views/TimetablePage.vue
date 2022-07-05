@@ -55,6 +55,7 @@ import {
     IonInput,
     IonCard
 } from "@ionic/vue";
+import { useTimetables } from "@/composables/useTimetables";
 
 export default {
     name: "TimetablePage",
@@ -69,7 +70,6 @@ export default {
         IonRow,
         IonCol
     },
-
     data() {
         return {
             lectures: [
