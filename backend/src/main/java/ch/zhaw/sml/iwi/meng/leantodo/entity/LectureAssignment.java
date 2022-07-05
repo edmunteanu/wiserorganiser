@@ -9,19 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class LectureAssignment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private Date date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "timetable_id")
     private Timetable timetable;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "lecture_id")
     private Lecture lecture;
