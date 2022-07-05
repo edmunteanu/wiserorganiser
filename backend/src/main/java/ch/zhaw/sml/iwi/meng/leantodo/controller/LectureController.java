@@ -1,6 +1,7 @@
 package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,11 +19,12 @@ public class LectureController {
     @Autowired
     private LectureAssignmentRepository lectureAssignmentRepository;
 
+    // Does not work yet
     public List<Lecture> getLectures(Long timetableId) {
         return lectureAssignmentRepository.getByTimetableId(timetableId);
     }
 
-    public Lecture getLecture(Long id) {
-        return lectureRepository.getById(id);
+    public Optional<Lecture> getLecture(Long id) {
+        return lectureRepository.findById(id);
     }
 }

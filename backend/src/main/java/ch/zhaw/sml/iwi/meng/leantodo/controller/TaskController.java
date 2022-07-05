@@ -1,6 +1,7 @@
 package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,7 @@ public class TaskController {
         return timetable.getTasks();
     }
     
-    public Task getTask(Long id) {
-        return taskRepository.getById(id);
+    public Optional<Task> getTask(Long id) {
+        return taskRepository.findById(id);
     }
 }
