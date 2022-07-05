@@ -1,93 +1,63 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Tasks</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tasks</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <div id="container">
-        <ion-list>
-          <ion-title class="ion-padding"><strong>Übersicht</strong></ion-title>
-          <ion-card v-bind:router-link="'/tabs/tasks/' + task.title" button v-bind:key="task" v-for="task in tasks">
-            <ion-card-header>
-              <ion-label>
-                  <ion-checkbox style="float: right; vertical-align: middle" ></ion-checkbox>
-                  <ion-card-title>{{ task.title }}</ion-card-title>
-                  <ion-card-subtitle>{{ task.date }}</ion-card-subtitle>
-                </ion-label>
-            </ion-card-header>
-          </ion-card>
-          <ion-button shape="round" class="ion-margin">Neuer Task</ion-button>
-        </ion-list>
-      </div>
-    </ion-content>
-  </ion-page>
+    <ion-page>
+        <ion-header :translucent="true">
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-back-button></ion-back-button>
+                </ion-buttons>
+                <ion-title>Mein Task</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content :fullscreen="true">
+            <ion-header collapse="condense">
+                <ion-toolbar>
+                    <ion-title size="large" >Task</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-list class="ion-padding">
+                <h2><strong>Task Details zur Nr. {{ id }}</strong></h2>
+                <ion-text>
+                    <h3>Terminiert am</h3>
+                    <p>12.10.2022 / 14.00 - 16.00 Uhr</p>
+                    <h3>Titel</h3>
+                    <p>Do something</p>
+                    <h3>Beschreibung</h3>
+                    <p>Blablabla</p>
+                </ion-text>
+                <ion-button shape="round" class="ion-margin">Ändern</ion-button>
+                <ion-button shape="round" class="ion-margin">Speichern</ion-button>
+            </ion-list>
+        </ion-content>
+    </ion-page>
 </template>
 
-<script lang="ts">
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonCard,
-  IonCol,
-  IonRow,
-  IonGrid,
-  IonItem,
-  IonList,
-  IonButton,
-  IonInput,
-  IonCheckbox
-} from "@ionic/vue";
-import { squareOutline } from "ionicons/icons";
+<script>
+import { IonContent, IonHeader, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/vue';
+import { defineComponent } from 'vue';
+import { useRoute } from "vue-router";
 
-export default {
-  name: "TasksPage",
-  components: {
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonPage,
-    IonCard,
-    IonList,
-    IonCheckbox,
-  },
-  setup() {
-    return {
-      squareOutline,
-    };
-  },
+export default defineComponent({
+    name: 'TaskDetailsPage',
+    components: {
+        IonContent,
+        IonHeader,
+        IonPage,
+        IonTitle,
+        IonToolbar,
+        IonButtons,
+        IonBackButton
+    },
+    setup() {
+        const route = useRoute()
+        const { id } = route.params;
 
-  data() {
-    return {
-      tasks: [
-        {
-          title: "Do something",
-          date: "12.10.2022 / 14.00 - 16.00 Uhr",
-        },
-        {
-          title: "Do another thing",
-          date: "17.10.2022 / 15.00 - 16.00 Uhr",
-        },
-        {
-          title: "Do some things",
-          date: "18.12.2022 / 09.00 - 11.00 Uhr",
-        },
-        {
-          title: "Do it",
-          date: "22.12.2022 / 09.00 - 11.00 Uhr",
-        },
-      ],
-    };
-  },
-};
+        return {
+            id
+        }
+    }
+})
 </script>
+
+<style scoped>
+</style>
