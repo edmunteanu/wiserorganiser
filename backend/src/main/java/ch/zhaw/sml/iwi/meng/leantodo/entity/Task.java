@@ -19,6 +19,17 @@ public class Task {
     private Date date;
     private boolean done;
 
+    public Task() {
+
+    }
+
+    public Task(String name, String description, Date date, boolean done) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.done = done;
+    }
+
     public Long getId() {
         return id;
     }

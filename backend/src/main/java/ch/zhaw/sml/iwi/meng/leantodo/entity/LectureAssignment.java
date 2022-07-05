@@ -30,6 +30,16 @@ public class LectureAssignment {
     @JoinColumn(name = "lecture_id")
     private Lecture lecture;
 
+    public LectureAssignment() {
+
+    }
+
+    public LectureAssignment(Date date, Timetable timetable, Lecture lecture) {
+        this.date = date;
+        this.timetable = timetable;
+        this.lecture = lecture;
+    }
+
     public Long getId() {
         return id;
     }

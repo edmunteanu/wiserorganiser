@@ -25,6 +25,15 @@ public class Timetable {
     @OneToMany
     private List<Task> tasks = new ArrayList<>();
 
+    public Timetable() {
+
+    }
+
+    public Timetable(String name, String semester) {
+        this.name = name;
+        this.semester = name;
+    }
+
     public Long getId() {
         return id;
     }
