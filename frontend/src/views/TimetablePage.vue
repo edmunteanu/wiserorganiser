@@ -12,6 +12,7 @@
                 </ion-toolbar>
             </ion-header>
             <p>Timetable :)</p>
+            <p>{{ timetables }}</p>
         </ion-content>
     </ion-page>
 </template>
@@ -31,6 +32,7 @@ import {
     IonButton,
     IonInput,
 } from "@ionic/vue";
+import { useTimetables } from "@/composables/useTimetables";
 
 export default {
     name: "TimetablePage",
@@ -41,5 +43,10 @@ export default {
         IonContent,
         IonPage,
     },
+    setup() {
+    const { timetables } = useTimetables();
+
+    return { timetables };
+  },
 };
 </script>
