@@ -16,9 +16,21 @@
                 </ion-toolbar>
             </ion-header>
             <div id="container" class="ion-padding" v-if="lecture">
-                <p>Lecture ID: {{ lecture.id }}</p>
+                <ion-list class="ion-padding">
+                    <h2><strong>Lecture Details zur Nr. {{ lecture.id }}</strong></h2>
+                    <ion-text>
+                        <h3>Lecture name</h3>
+                        <p>{{ lecture.name }}</p>
+                        <h3>Description</h3>
+                        <p>{{ lecture.description }}</p>
+                        <h3>Professor</h3>
+                        <p>{{ lecture.professor }}</p>
+                        <h3>Room</h3>
+                        <p>{{ lecture.room }}</p>
+                    </ion-text>
+                 </ion-list>
             </div>
- 
+
         </ion-content>
     </ion-page>
 </template>
