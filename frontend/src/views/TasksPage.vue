@@ -13,17 +13,32 @@
       </ion-header>
       <div id="container">
         <ion-list>
-          <ion-title class="ion-padding"><strong>Übersicht</strong></ion-title>
-          <ion-card v-bind:router-link="'/tabs/tasks/' + task.id" button v-bind:key="task" v-for="task in tasks">
+          <ion-item>
+            <ion-title><strong>Klasse auswählen</strong></ion-title>
+          </ion-item>
+          <ion-item>
+            <ion-label>Klasse</ion-label>
+            <ion-select v-if="timetables.length > 0" :placeholder="timetables[0].name" interface="popover" @ionChange="getTasks($event.detail.value)">
+              <ion-select-option :key="timetable.id" v-for="timetable in timetables" :value="timetable.id">{{ timetable.name }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-card :router-link="'/tabs/tasks/' + task.id" button :key="task.id" v-for="task in tasks">
             <ion-card-header>
               <ion-label>
-                  <ion-checkbox style="float: right; vertical-align: middle"></ion-checkbox>
-                  <ion-card-title>{{ task.title }}</ion-card-title>
-                  <ion-card-subtitle>{{ task.date }}</ion-card-subtitle>
-                </ion-label>
+                <ion-checkbox
+                  style="float: right; vertical-align: middle"
+                ></ion-checkbox>
+                <ion-card-title>{{ task.name }}</ion-card-title>
+                <ion-card-subtitle>{{ task.description }}</ion-card-subtitle>
+              </ion-label>
             </ion-card-header>
           </ion-card>
-          <ion-button v-bind:router-link="'tasks/createtask'" shape="round" class="ion-margin">Neuer Task</ion-button>
+          <ion-button
+            v-bind:router-link="'tasks/createtask'"
+            shape="round"
+            class="ion-margin"
+            >Neuer Task</ion-button
+          >
         </ion-list>
       </div>
     </ion-content>
@@ -38,61 +53,48 @@ import {
   IonTitle,
   IonContent,
   IonCard,
-  IonCol,
-  IonRow,
-  IonGrid,
-  IonItem,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardHeader,
   IonList,
+  IonItem,
+  IonLabel,
   IonButton,
-  IonInput,
-  IonCheckbox
+  IonCheckbox,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/vue";
-import { squareOutline } from "ionicons/icons";
 
-export default {
+import { useTasks } from "@/composables/useTasks";
+import { useTimetables } from "@/composables/useTimetables";
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
   name: "TasksPage",
   components: {
+    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
-    IonPage,
     IonCard,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardHeader,
     IonList,
+    IonItem,
+    IonLabel,
+    IonButton,
     IonCheckbox,
-    IonButton
+    IonSelect,
+    IonSelectOption,
   },
   setup() {
-    return {
-      squareOutline,
-    };
-  },
+    const selectedTimetableId = ref(1);
+    const { timetables } = useTimetables();
+    const { tasks, getTasks } = useTasks(selectedTimetableId.value);
 
-  data() {
-    return {
-      tasks: [
-        {
-          id: 1,
-          title: "Do something",
-          date: "12.10.2022 / 14.00 - 16.00 Uhr",
-        },
-        {
-          id: 2,
-          title: "Do another thing",
-          date: "17.10.2022 / 15.00 - 16.00 Uhr",
-        },
-        {
-          id: 3,
-          title: "Do some things",
-          date: "18.12.2022 / 09.00 - 11.00 Uhr",
-        },
-        {
-          id: 4,
-          title: "Do it",
-          date: "22.12.2022 / 09.00 - 11.00 Uhr",
-        },
-      ],
-    };
-  },
-};
+    return { timetables, selectedTimetableId, tasks, getTasks };
+  }
+});
 </script>
