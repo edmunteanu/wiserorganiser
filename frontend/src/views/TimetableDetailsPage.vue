@@ -15,34 +15,42 @@
                 </ion-toolbar>
             </ion-header>
             <div id="container" class="ion-padding">
-                <p><strong>Your Timetable</strong></p>
-                <ion-grid>
-                    <ion-row v-bind:key="lecture" v-for="lecture in lectures">
-                        <ion-col size="3">
-                            <ion-card>
-                                <ion-card-title>{{ lecture.time }}</ion-card-title>
-                            </ion-card>
-                        </ion-col>
-                        <ion-col size="9">
-                            <ion-card v-bind:router-link="'/tabs/lectures/' + lecture.id" button>
-                                <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
-                                <ion-card-title>{{ lecture.name }}</ion-card-title>
-                            </ion-card>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-                <!-- <ion-list>
-                    <ion-card v-bind:router-link="'/tabs/lecture/' + lecture.name" button v-bind:key="lecture" v-for="lecture in lectures">
-                        <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
-                        <ion-card-title>{{ lecture.name }}</ion-card-title>
-                    </ion-card>
-                </ion-list> -->
+                <h1>Timetable ID: {{ id }}</h1>
+                <ion-slides pager="true" :options="slideOpts">
+                    <ion-slide v-bind:key="day" v-for="day in days" style="padding-bottom: 50px;">
+                        <ion-grid>
+                            <ion-row>
+                                <h2>{{ day }}</h2>
+                            </ion-row>
+                            <ion-row v-bind:key="lecture" v-for="lecture in lectures">
+                                <ion-col size="3">
+                                    <ion-card>
+                                        <ion-card-title v-if="lecture.lectureAssignments[0].day == day">{{
+                                                lecture.lectureAssignments[0].startHour
+                                        }} <br> {{
+        lecture.lectureAssignments[0].endHour
+}}</ion-card-title>
+                                    </ion-card>
+                                </ion-col>
+                                <ion-col size="9">
+                                    <ion-card v-bind:router-link="'/tabs/lectures/' + lecture.id" button
+                                        v-if="lecture.lectureAssignments[0].day == day">
+                                        <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
+                                        <ion-card-title>{{ lecture.name }}</ion-card-title>
+                                    </ion-card>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+
+                    </ion-slide>
+                </ion-slides>
+
             </div>
         </ion-content>
     </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import {
     IonPage,
     IonHeader,
@@ -60,8 +68,12 @@ import {
     IonInput,
     IonCard,
     IonButtons,
-    IonBackButton
+    IonBackButton,
+    IonSlides,
+    IonSlide
 } from "@ionic/vue";
+import { useLectures } from "@/composables/useLectures";
+import { useRoute } from "vue-router";
 
 export default {
     name: "TimetablesPage",
@@ -78,36 +90,30 @@ export default {
         IonRow,
         IonCol,
         IonButtons,
-        IonBackButton
+        IonBackButton,
+        IonSlides,
+        IonSlide
     },
     data() {
         return {
-            lectures: [
-                {
-                    id: 1,
-                    time: "8:00 - 9:00",
-                    name: "Web Engineering",
-                    description: "We will build stuff",
-                    professor: "Max Meisterhans",
-                    room: "SW 303"
-                },
-                {
-                    id: 2,
-                    time: "9:00 - 10:00",
-                    name: "GPI",
-                    description: "We will build more stuff",
-                    professor: "Peter Heinrich",
-                    room: "SW 219"
-                },
-                {
-                    id: 3,
-                    time: "10:00 - 11:00",
-                    name: "Statistik",
-                    description: "We will calculate stuff",
-                    professor: "Statistik Dozent",
-                    room: "SW 012"
-                }
-            ]
+            days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            times: [["08:00", "10:00"], ["11:00", "12:00"],["13:00", "14:00"], ["15:00", "17:00"],]
+        }
+    },
+    setup() {
+        const route = useRoute()
+        const { id } = route.params;
+        const { lectures } = useLectures(id);
+
+        const slideOpts = {
+            initialSlide: 0,
+            speed: 400
+        };
+
+        return {
+            id,
+            lectures,
+            slideOpts
         }
     }
 };
