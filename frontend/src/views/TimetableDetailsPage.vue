@@ -24,7 +24,7 @@
                             </ion-card>
                         </ion-col>
                         <ion-col size="9">
-                            <ion-card v-bind:router-link="'/tabs/lecture/' + lecture.id" button>
+                            <ion-card v-bind:router-link="'/tabs/lectures/' + lecture.id" button>
                                 <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
                                 <ion-card-title>{{ lecture.name }}</ion-card-title>
                             </ion-card>
@@ -48,6 +48,8 @@ import {
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonCardTitle,
+    IonCardSubtitle,
     IonContent,
     IonCol,
     IonRow,
@@ -67,6 +69,8 @@ export default {
         IonHeader,
         IonToolbar,
         IonTitle,
+        IonCardTitle,
+        IonCardSubtitle,
         IonContent,
         IonPage,
         IonCard,
@@ -80,7 +84,7 @@ export default {
         return {
             lectures: [
                 {
-                    id: "1",
+                    id: 1,
                     time: "8:00 - 9:00",
                     name: "Web Engineering",
                     description: "We will build stuff",
@@ -88,7 +92,7 @@ export default {
                     room: "SW 303"
                 },
                 {
-                    id: "2",
+                    id: 2,
                     time: "9:00 - 10:00",
                     name: "GPI",
                     description: "We will build more stuff",
@@ -96,7 +100,7 @@ export default {
                     room: "SW 219"
                 },
                 {
-                    id: "3",
+                    id: 3,
                     time: "10:00 - 11:00",
                     name: "Statistik",
                     description: "We will calculate stuff",

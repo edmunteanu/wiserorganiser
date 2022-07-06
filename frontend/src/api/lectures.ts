@@ -3,7 +3,7 @@ import { API_ROOT } from "@/config/development";
 import { Lecture } from '@/model/lecture';
 
 export async function getLectureDetails(lectureId: number): Promise<Lecture>   { 
-
+    
     const config = {        
         withCredentials: true
     }

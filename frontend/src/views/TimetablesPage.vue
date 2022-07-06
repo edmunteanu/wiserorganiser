@@ -15,7 +15,7 @@
                 <p><strong>Choose your timetable</strong></p>
                 <ion-list>
                     <ion-item v-bind:router-link="'/tabs/timetables/' + timetable.id" button :key="timetable" v-for="timetable in timetables">
-                        <ion-label>{{ timetable.name }}</ion-label>
+                        <ion-label v-if="timetable">{{ timetable.name }}</ion-label>
                     </ion-item>
                 </ion-list>
             </div>
