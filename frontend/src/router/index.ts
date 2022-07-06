@@ -33,12 +33,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/TaskDetailsPage.vue'),
       },
       {
-        path: 'lecture/:id',
+        path: 'lectures/:id',
         component: () => import('@/views/LectureDetailsPage.vue'),
       },
       {
         path: 'timetables/:id',
         component: () => import('@/views/TimetableDetailsPage.vue'),
+      },
+      {
+        path: 'tasks/createtask',
+        component: () => import('@/views/CreateTaskPage.vue'),
       },
     ]
   }

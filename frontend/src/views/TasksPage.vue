@@ -17,13 +17,13 @@
           <ion-card v-bind:router-link="'/tabs/tasks/' + task.id" button v-bind:key="task" v-for="task in tasks">
             <ion-card-header>
               <ion-label>
-                  <ion-checkbox style="float: right; vertical-align: middle" ></ion-checkbox>
+                  <ion-checkbox style="float: right; vertical-align: middle"></ion-checkbox>
                   <ion-card-title>{{ task.title }}</ion-card-title>
                   <ion-card-subtitle>{{ task.date }}</ion-card-subtitle>
                 </ion-label>
             </ion-card-header>
           </ion-card>
-          <ion-button shape="round" class="ion-margin">Neuer Task</ion-button>
+          <ion-button v-bind:router-link="'tasks/createtask'" shape="round" class="ion-margin">Neuer Task</ion-button>
         </ion-list>
       </div>
     </ion-content>
@@ -60,6 +60,7 @@ export default {
     IonCard,
     IonList,
     IonCheckbox,
+    IonButton
   },
   setup() {
     return {
