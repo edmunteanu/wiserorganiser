@@ -1,7 +1,5 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +16,9 @@ public class LectureAssignment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Date date;
+    private String startHour;
+    private String endHour;
+    private String day;
 
     @JsonIgnore
     @ManyToOne
@@ -34,8 +34,10 @@ public class LectureAssignment {
 
     }
 
-    public LectureAssignment(Date date, Timetable timetable, Lecture lecture) {
-        this.date = date;
+    public LectureAssignment(String startHour, String endHour, String day, Timetable timetable, Lecture lecture) {
+        this.startHour = startHour;
+        this.endHour = endHour;
+        this.day = day;
         this.timetable = timetable;
         this.lecture = lecture;
     }
@@ -48,12 +50,28 @@ public class LectureAssignment {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public String getStartHour() {
+        return startHour;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartHour(String startHour) {
+        this.startHour = startHour;
+    }
+
+    public String getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(String endHour) {
+        this.endHour = endHour;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public Timetable getTimetable() {

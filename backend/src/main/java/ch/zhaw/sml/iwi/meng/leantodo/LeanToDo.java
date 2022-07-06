@@ -1,7 +1,5 @@
 package ch.zhaw.sml.iwi.meng.leantodo;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,8 +21,6 @@ import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.TaskRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Timetable;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.TimetableRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDoRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.User;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.UserRepository;
 
@@ -55,9 +51,6 @@ public class LeanToDo implements CommandLineRunner {
 
     @Autowired
     private LectureAssignmentRepository assignmentRepository;
-    
-    @Autowired
-    private ToDoRepository toDoRepository;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -77,6 +70,8 @@ public class LeanToDo implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        // Create default user and user role assignment
         User u = new User();
         u.setLoginName("user");
         u.setPasswordHash(new BCryptPasswordEncoder().encode("user"));
@@ -86,41 +81,76 @@ public class LeanToDo implements CommandLineRunner {
         u.getRoles().add(r);
         userRepository.save(u);
 
-        ToDo toDo = new ToDo();
-        toDo.setTitle("Finish This app");
-        toDo.setOwner("user");
-        toDoRepository.save(toDo);
+        // Create dummy timetables
+        Timetable timetable1 = new Timetable("W.BA.WIN.19HS.VZa", "FS2022");
+        Timetable timetable2 = new Timetable("W.BA.WIN.19HS.VZb", "FS2022");
+        Timetable timetable3 = new Timetable("W.BA.WIN.19HS.VZc", "FS2022");
 
-        toDo = new ToDo();
-        toDo.setTitle("Reply to student");
-        toDo.setOwner("user");
-        toDoRepository.save(toDo);
-
-        Timetable timetable = new Timetable();
-        timetable.setName("W.BA.WIN.21HS.VZb");
-        timetable.setSemester("HS2019");
-
-        Task task = new Task();
-        task.setName("Task 1");
-        task.setDescription("Description task 1");
-        task.setDate(new Date());
-        task.setDone(false);
-        taskRepository.save(task);
+        // Create and save dummy tasks
+        Task task1 = new Task("Task 1", "Description task 1", "11:00", "12:00", "Monday", false);
+        Task task2 = new Task("Task 2", "Description task 2", "14:00", "15:00", "Monday", false);
+        Task task3 = new Task("Task 3", "Description task 3", "11:00", "12:00", "Monday", false);
+        Task task4 = new Task("Task 4", "Description task 4", "14:00", "15:00", "Monday", false);
+        Task task5 = new Task("Task 5", "Description task 5", "11:00", "12:00", "Monday", false);
+        Task task6 = new Task("Task 6", "Description task 6", "14:00", "15:00", "Monday", false);
+        taskRepository.save(task1);
+        taskRepository.save(task2);
+        taskRepository.save(task3);
+        taskRepository.save(task4);
+        taskRepository.save(task5);
+        taskRepository.save(task6);
         
-        timetable.getTasks().add(task);
-        timetableRepository.save(timetable);
+        // Add tasks to timetables
+        timetable1.getTasks().add(task1);
+        timetable1.getTasks().add(task2);
+        timetable2.getTasks().add(task3);
+        timetable2.getTasks().add(task4);
+        timetable3.getTasks().add(task5);
+        timetable3.getTasks().add(task6);
+        
+        // Save timetables
+        timetableRepository.save(timetable1);
+        timetableRepository.save(timetable2);
+        timetableRepository.save(timetable3);
 
-        Lecture lecture = new Lecture();
-        lecture.setName("FSWD");
-        lecture.setDescription("Full Stack Web Development");
-        lecture.setProfessor("Max Meisterhans");
-        lecture.setRoom("SI O4.04");
-        lectureRepository.save(lecture);
+        // Create and save lectures
+        Lecture lecture1 = new Lecture("w.2DVF", "Debatte und Verhandlungsführung", "stla", "SW 124");
+        Lecture lecture2 = new Lecture("w.2EER", "Ehegüter- und Erbrecht", "fisc", "MB O3.30");
+        Lecture lecture6 = new Lecture("w.2RPT", "Rhetorik und Präsentationstechnik", "alma", "SW 229");
+        Lecture lecture3 = new Lecture("w.2FinverR", "Finanzverfassungsrecht", "sefe", "SW 229");
+        Lecture lecture4 = new Lecture("w.2SPG", "Steuerplanung- und Gestaltung", "haje", "SM O2.29");
+        Lecture lecture5 = new Lecture("w.2ISPBWLStL", "Interdisziplinärer Schwerpunkt Betriebswirtschaftliche Steuerlehre", "haje", "SW 323");
+        Lecture lecture7 = new Lecture("w.2ISPUR", "Interdisziplinärer Schwerpunkt Unternehmensrecht", "bsel", "MB O3.30");
+        Lecture lecture8 = new Lecture("w.2ISPVRMmgt", "Interdisziplinärer Schwerpunkt Verwaltungsrecht & Mmgt.", "husi", "MY O4.09");
+        Lecture lecture9 = new Lecture("w.2Mind", "Mindfulness / Mindful Leadership", "jehl", "MB O3.18");
+        lectureRepository.save(lecture1);
+        lectureRepository.save(lecture2);
+        lectureRepository.save(lecture3);
+        lectureRepository.save(lecture4);
+        lectureRepository.save(lecture5);
+        lectureRepository.save(lecture6);
+        lectureRepository.save(lecture7);
+        lectureRepository.save(lecture8);
+        lectureRepository.save(lecture9);
 
-        LectureAssignment assignment = new LectureAssignment();
-        assignment.setLecture(lecture);
-        assignment.setTimetable(timetable);
-        assignment.setDate(new Date());
-        assignmentRepository.save(assignment);
+        // Create and save lecture assignments
+        LectureAssignment assignment1 = new LectureAssignment("08:00", "10:00", "Monday", timetable1, lecture1);
+        LectureAssignment assignment2 = new LectureAssignment("13:00", "14:00", "Monday", timetable1, lecture2);
+        LectureAssignment assignment3 = new LectureAssignment("15:00", "17:00", "Monday", timetable1, lecture3);
+        LectureAssignment assignment4 = new LectureAssignment("08:00", "10:00", "Monday", timetable2, lecture4);
+        LectureAssignment assignment5 = new LectureAssignment("13:00", "14:00", "Monday", timetable2, lecture5);
+        LectureAssignment assignment6 = new LectureAssignment("15:00", "17:00", "Monday", timetable2, lecture6);
+        LectureAssignment assignment7 = new LectureAssignment("08:00", "10:00", "Monday", timetable3, lecture7);
+        LectureAssignment assignment8 = new LectureAssignment("13:00", "14:00", "Monday", timetable3, lecture8);
+        LectureAssignment assignment9 = new LectureAssignment("15:00", "17:00", "Monday", timetable3, lecture9);
+        assignmentRepository.save(assignment1);
+        assignmentRepository.save(assignment2);
+        assignmentRepository.save(assignment3);
+        assignmentRepository.save(assignment4);
+        assignmentRepository.save(assignment5);
+        assignmentRepository.save(assignment6);
+        assignmentRepository.save(assignment7);
+        assignmentRepository.save(assignment8);
+        assignmentRepository.save(assignment9);
     }
 }
