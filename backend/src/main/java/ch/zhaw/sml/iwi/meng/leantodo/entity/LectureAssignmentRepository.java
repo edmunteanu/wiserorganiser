@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LectureAssignmentRepository extends JpaRepository<LectureAssignment, Long> {
-    @Query(value = "SELECT LECTURE.ID, LECTURE.DESCRIPTION, LECTURE.NAME, LECTURE.PROFESSOR, LECTURE.ROOM FROM LECTURE INNER JOIN LECTURE_ASSIGNMENT ON LECTURE.ID=LECTURE_ASSIGNMENT.LECTURE_ID WHERE LECTURE_ASSIGNMENT.TIMETABLE_ID=?1", nativeQuery = true)
+    @Query("SELECT DISTINCT l FROM LectureAssignment la JOIN la.lecture l WHERE la.timetable.id = ?1")
     public List<Lecture> getByTimetableId(Long timetableId);
 }
