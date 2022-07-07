@@ -18,11 +18,26 @@
           </ion-item>
           <ion-item>
             <ion-label>Klasse</ion-label>
-            <ion-select v-if="timetables.length > 0" :placeholder="timetables[0].name" interface="popover" @ionChange="getTasks($event.detail.value)">
-              <ion-select-option :key="timetable.id" v-for="timetable in timetables" :value="timetable.id">{{ timetable.name }}</ion-select-option>
+            <ion-select
+              v-if="timetables.length > 0"
+              :placeholder="timetables[0].name"
+              interface="popover"
+              @ionChange="getTasks($event.detail.value)"
+            >
+              <ion-select-option
+                :key="timetable.id"
+                v-for="timetable in timetables"
+                :value="timetable.id"
+                >{{ timetable.name }}</ion-select-option
+              >
             </ion-select>
           </ion-item>
-          <ion-card :router-link="'/tabs/tasks/' + task.id" button :key="task.id" v-for="task in tasks">
+          <ion-card
+            :router-link="'/tabs/tasks/' + task.id"
+            button
+            :key="task.id"
+            v-for="task in tasks"
+          >
             <ion-card-header>
               <ion-label>
                 <ion-checkbox
@@ -34,7 +49,7 @@
             </ion-card-header>
           </ion-card>
           <ion-button
-            v-bind:router-link="'tasks/createtask'"
+            v-bind:router-link="'tasks/new'"
             shape="round"
             class="ion-margin"
             >Neuer Task</ion-button
@@ -67,7 +82,7 @@ import {
 
 import { useTasks } from "@/composables/useTasks";
 import { useTimetables } from "@/composables/useTimetables";
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "TasksPage",
@@ -95,6 +110,6 @@ export default defineComponent({
     const { tasks, getTasks } = useTasks(selectedTimetableId.value);
 
     return { timetables, selectedTimetableId, tasks, getTasks };
-  }
+  },
 });
 </script>

@@ -7,7 +7,7 @@
           <ion-icon :icon="calendarOutline" />
           <ion-label>Stundenplan</ion-label>
         </ion-tab-button>
-          
+
         <ion-tab-button tab="tasks" href="/tabs/tasks">
           <ion-icon :icon="pencilOutline" />
           <ion-label>Tasks</ion-label>
@@ -18,17 +18,33 @@
 </template>
 
 <script lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { pencilOutline, calendarOutline } from 'ionicons/icons';
+import {
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonLabel,
+  IonIcon,
+  IonPage,
+  IonRouterOutlet,
+} from "@ionic/vue";
+import { pencilOutline, calendarOutline } from "ionicons/icons";
 
 export default {
-  name: 'Tabs',
-  components: { IonLabel, IonTabs, IonTabBar, IonTabButton, IonIcon, IonPage, IonRouterOutlet },
+  name: "Tabs",
+  components: {
+    IonLabel,
+    IonTabs,
+    IonTabBar,
+    IonTabButton,
+    IonIcon,
+    IonPage,
+    IonRouterOutlet,
+  },
   setup() {
     return {
       pencilOutline,
-      calendarOutline
-    }
-  }
-}
+      calendarOutline,
+    };
+  },
+};
 </script>

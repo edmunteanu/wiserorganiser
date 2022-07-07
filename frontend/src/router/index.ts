@@ -22,27 +22,27 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'timetables',
-        component: () => import('@/views/TimetablesPage.vue')
-      },
-      {
-        path: 'tasks',
-        component: () => import('@/views/TasksPage.vue')
-      },
-      { 
-        path: 'tasks/:id',
-        component: () => import('@/views/TaskDetailsPage.vue'),
-      },
-      {
-        path: 'lectures/:id',
-        component: () => import('@/views/LectureDetailsPage.vue'),
+        component: () => import('@/views/timetables/TimetablesPage.vue')
       },
       {
         path: 'timetables/:id',
-        component: () => import('@/views/TimetableDetailsPage.vue'),
+        component: () => import('@/views/timetables/TimetableDetailsPage.vue'),
       },
       {
-        path: 'tasks/createtask',
-        component: () => import('@/views/CreateTaskPage.vue'),
+        path: 'tasks',
+        component: () => import('@/views/tasks/TasksPage.vue')
+      },
+      { 
+        path: 'tasks/:id',
+        component: () => import('@/views/tasks/TaskDetailsPage.vue'),
+      },
+      {
+        path: 'tasks/new',
+        component: () => import('@/views/tasks/NewTaskPage.vue'),
+      },
+      {
+        path: 'lectures/:id',
+        component: () => import('@/views/lectures/LectureDetailsPage.vue'),
       },
     ]
   }

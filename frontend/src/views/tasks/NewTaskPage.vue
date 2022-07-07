@@ -19,12 +19,19 @@
         <h2><strong>Erfasse deinen Task</strong></h2>
         <ion-text>
           <h4><strong>Datum</strong></h4>
-          <ion-datetime :show-default-buttons="true" minute-values="0"></ion-datetime>
+          <ion-datetime
+            :show-default-buttons="true"
+            minute-values="0"
+          ></ion-datetime>
           <p></p>
-            <ion-label><h1><strong>Titel deines Tasks</strong></h1></ion-label>
-            <ion-input placeholder="Do it"></ion-input>
-            <ion-label><h1><strong>Beschreibung</strong></h1></ion-label>
-            <ion-textarea placeholder="Be productive"></ion-textarea>
+          <ion-label
+            ><h1><strong>Titel deines Tasks</strong></h1></ion-label
+          >
+          <ion-input placeholder="Do it"></ion-input>
+          <ion-label
+            ><h1><strong>Beschreibung</strong></h1></ion-label
+          >
+          <ion-textarea placeholder="Be productive"></ion-textarea>
         </ion-text>
         <ion-button shape="round" class="ion-margin">Ändern</ion-button>
         <ion-button shape="round" class="ion-margin">Speichern</ion-button>
