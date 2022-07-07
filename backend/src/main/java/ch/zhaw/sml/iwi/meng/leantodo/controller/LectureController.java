@@ -19,7 +19,6 @@ public class LectureController {
     @Autowired
     private LectureAssignmentRepository lectureAssignmentRepository;
 
-    // Does not work yet
     public List<Lecture> getLectures(Long timetableId) {
         return lectureAssignmentRepository.getByTimetableId(timetableId);
     }
