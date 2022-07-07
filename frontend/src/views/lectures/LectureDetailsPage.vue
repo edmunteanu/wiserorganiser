@@ -40,8 +40,6 @@
 import {
   IonContent,
   IonHeader,
-  IonItem,
-  IonLabel,
   IonList,
   IonPage,
   IonTitle,
@@ -49,14 +47,17 @@ import {
   IonButtons,
   IonBackButton,
 } from "@ionic/vue";
+
+import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
 import { useLectures } from "@/composables/useLectures";
 
-export default {
+export default defineComponent({
   name: "LectureDetailsPage",
   components: {
     IonContent,
     IonHeader,
+    IonList,
     IonPage,
     IonTitle,
     IonToolbar,
@@ -73,7 +74,7 @@ export default {
       lecture,
     };
   },
-};
+});
 </script>
 
 <style scoped>

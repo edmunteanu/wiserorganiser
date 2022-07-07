@@ -39,9 +39,11 @@ import {
   IonItem,
   IonLabel,
 } from "@ionic/vue";
+
+import { defineComponent } from "vue";
 import { useTimetables } from "@/composables/useTimetables";
 
-export default {
+export default defineComponent({
   name: "TimetablesPage",
   components: {
     IonHeader,
@@ -58,5 +60,5 @@ export default {
 
     return { timetables };
   },
-};
+});
 </script>

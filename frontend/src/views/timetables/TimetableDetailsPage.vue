@@ -69,33 +69,31 @@ import {
   IonCol,
   IonRow,
   IonGrid,
-  IonItem,
-  IonList,
-  IonButton,
-  IonInput,
   IonCard,
   IonButtons,
   IonBackButton,
   IonSlides,
   IonSlide,
 } from "@ionic/vue";
+
+import { defineComponent } from "vue";
 import { useLectures } from "@/composables/useLectures";
 import { useRoute } from "vue-router";
 
-export default {
+export default defineComponent({
   name: "TimetablesPage",
   components: {
+    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonCardTitle,
     IonCardSubtitle,
     IonContent,
-    IonPage,
-    IonCard,
-    IonGrid,
-    IonRow,
     IonCol,
+    IonRow,
+    IonGrid,
+    IonCard,
     IonButtons,
     IonBackButton,
     IonSlides,
@@ -128,5 +126,5 @@ export default {
       slideOpts,
     };
   },
-};
+});
 </script>

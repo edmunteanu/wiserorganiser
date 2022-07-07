@@ -80,9 +80,9 @@ import {
   IonSelectOption,
 } from "@ionic/vue";
 
+import { defineComponent, ref } from "vue";
 import { useTasks } from "@/composables/useTasks";
 import { useTimetables } from "@/composables/useTimetables";
-import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "TasksPage",
