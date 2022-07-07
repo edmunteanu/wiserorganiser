@@ -27,3 +27,15 @@ export async function getAllTasks(timetableId: number): Promise<Task[]>   {
         return <any>error;   
     }
 }
+
+export async function createNewTask(timetableId: number, newTask: Task): Promise<any>   {
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.post(API_ROOT + '/api/timetables/' + timetableId + '/tasks', newTask, config);
+        return response.data;
+    } catch (error) {
+        return error;   
+    }
+}

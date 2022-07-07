@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/tasks/TaskDetailsPage.vue'),
       },
       {
-        path: 'tasks/new',
+        path: 'timetables/:id/tasks/new',
         component: () => import('@/views/tasks/NewTaskPage.vue'),
       },
       {

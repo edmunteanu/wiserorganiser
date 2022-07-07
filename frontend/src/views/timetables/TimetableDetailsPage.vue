@@ -70,7 +70,7 @@ import {
   IonSlide,
 } from "@ionic/vue";
 
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { useLectures } from "@/composables/useLectures";
 import { useRoute } from "vue-router";
 
@@ -102,12 +102,14 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const { id } = route.params;
-    const { lectures } = useLectures(id);
+    const { lectures, getLectures } = useLectures();
 
     const slideOpts = {
       initialSlide: 0,
       speed: 400,
     };
+
+    onMounted(getLectures(id));
 
     return {
       id,

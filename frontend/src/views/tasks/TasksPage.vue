@@ -22,7 +22,7 @@
               v-if="timetables.length > 0"
               :placeholder="timetables[0].name"
               interface="popover"
-              @ionChange="getTasks($event.detail.value)"
+              @ionChange="updateTasks($event.detail.value);"
             >
               <ion-select-option
                 :key="timetable.id"
@@ -49,7 +49,7 @@
             </ion-card-header>
           </ion-card>
           <ion-button
-            v-bind:router-link="'tasks/new'"
+            :router-link="`timetables/${selectedTimetableId}/tasks/new`"
             shape="round"
             class="ion-margin"
             >New task</ion-button
@@ -60,7 +60,7 @@
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import {
   IonPage,
   IonHeader,
@@ -77,10 +77,10 @@ import {
   IonButton,
   IonCheckbox,
   IonSelect,
-  IonSelectOption,
+  IonSelectOption
 } from "@ionic/vue";
 
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import { useTasks } from "@/composables/useTasks";
 import { useTimetables } from "@/composables/useTimetables";
 
@@ -102,14 +102,20 @@ export default defineComponent({
     IonButton,
     IonCheckbox,
     IonSelect,
-    IonSelectOption,
+    IonSelectOption
   },
   setup() {
     const selectedTimetableId = ref(1);
     const { timetables } = useTimetables();
-    const { tasks, getTasks } = useTasks(selectedTimetableId.value);
+    const { tasks, getTasks } = useTasks();
+    const updateTasks = (timetableId) => {
+      selectedTimetableId.value = timetableId;
+      getTasks(timetableId);
+    };
 
-    return { timetables, selectedTimetableId, tasks, getTasks };
+    onMounted(getTasks(selectedTimetableId.value));
+
+    return { timetables, selectedTimetableId, tasks, getTasks, updateTasks };
   },
 });
 </script>

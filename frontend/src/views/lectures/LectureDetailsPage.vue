@@ -46,9 +46,10 @@ import {
   IonToolbar,
   IonButtons,
   IonBackButton,
+  IonText,
 } from "@ionic/vue";
 
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useLectures } from "@/composables/useLectures";
 
@@ -63,11 +64,14 @@ export default defineComponent({
     IonToolbar,
     IonButtons,
     IonBackButton,
+    IonText,
   },
   setup() {
     const route = useRoute();
     const { id } = route.params;
-    const { lecture } = useLectures(id);
+    const { lecture, getLecture } = useLectures();
+
+    onMounted(getLecture(id));
 
     return {
       id,

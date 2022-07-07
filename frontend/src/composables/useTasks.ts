@@ -1,35 +1,42 @@
-import { getAllTasks } from '@/api/tasks';
+import { getAllTasks, getTaskDetails, createNewTask } from '@/api/tasks';
 import { Task } from '@/model/task';
-import { onMounted, ref } from 'vue';
-import { getTaskDetails } from '@/api/tasks';
+import { ref } from 'vue';
 
-export function useTasks(id: number) {
+export function useTasks() {
     const task = ref<Task>();
     const tasks = ref<Task[]>([]);
+    const newTask = ref<Task>({});
 
-    const getTask = async () => {
+    const getTask = async (taskId: number) => {
         try {
-            task.value = await getTaskDetails(id);
+            task.value = await getTaskDetails(taskId);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
     }
 
-    const getTasks = async () => {
+    const getTasks = async (timetableId: number) => {
         try {
-            tasks.value = await getAllTasks(id);
+            tasks.value = await getAllTasks(timetableId);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
     }
-    
-    onMounted(getTask);
-    onMounted(getTasks);
+
+    const addTask = async (timetableId: number) => {
+        try {
+            await createNewTask(timetableId, newTask.value);
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
 
     return {
         task,
         tasks,
+        newTask,
         getTask,
         getTasks,
+        addTask
     }
 }
