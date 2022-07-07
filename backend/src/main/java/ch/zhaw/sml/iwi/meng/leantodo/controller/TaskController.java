@@ -25,6 +25,14 @@ public class TaskController {
 
         return timetable.getTasks();
     }
+
+    public void persistTask(Task newTask, Long timetableId) {
+        taskRepository.save(newTask);
+
+        Timetable timetable = timetableRepository.getById(timetableId);
+        timetable.getTasks().add(newTask);
+        timetableRepository.save(timetable);
+    }
     
     public Optional<Task> getTask(Long id) {
         return taskRepository.findById(id);

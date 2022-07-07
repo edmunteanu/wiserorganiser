@@ -27,8 +27,6 @@
           <h3>Description</h3>
           <p>{{ task.description }} </p>
         </ion-text>
-        <ion-button shape="round" class="ion-margin">Change</ion-button>
-        <ion-button shape="round" class="ion-margin">Save</ion-button>
       </ion-list>
     </ion-content>
   </ion-page>
@@ -44,8 +42,7 @@ import {
   IonToolbar,
   IonButtons,
   IonBackButton,
-  IonText,
-  IonButton
+  IonText
 } from "@ionic/vue";
 
 import { defineComponent, onMounted } from "vue";
@@ -63,8 +60,7 @@ export default defineComponent({
     IonToolbar,
     IonButtons,
     IonBackButton,
-    IonText,
-    IonButton
+    IonText
   },
   setup() {
     const route = useRoute();

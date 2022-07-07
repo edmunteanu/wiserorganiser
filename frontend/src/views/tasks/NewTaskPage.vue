@@ -29,7 +29,10 @@
           <ion-label>Start hour</ion-label>
         </ion-item>
         <ion-item>
-          <ion-datetime presentation="time" v-model="rawStartHour"></ion-datetime>
+          <ion-datetime
+            presentation="time"
+            v-model="rawStartHour"
+          ></ion-datetime>
         </ion-item>
         <ion-item lines="none">
           <ion-label>End hour</ion-label>
@@ -49,7 +52,9 @@
             <ion-select-option value="Sunday">Sunday</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-button shape="round" class="ion-margin" @click="addNewTask(id)">Submit</ion-button>
+        <ion-button shape="round" class="ion-margin" @click="addNewTask(id)"
+          >Submit</ion-button
+        >
       </ion-list>
     </ion-content>
   </ion-page>
@@ -72,7 +77,7 @@ import {
   IonTextarea,
   IonSelect,
   IonSelectOption,
-  IonButton
+  IonButton,
 } from "@ionic/vue";
 
 import { defineComponent, ref } from "vue";
@@ -97,7 +102,7 @@ export default defineComponent({
     IonTextarea,
     IonSelect,
     IonSelectOption,
-    IonButton
+    IonButton,
   },
   setup() {
     const rawStartHour = ref();
@@ -105,10 +110,18 @@ export default defineComponent({
     const route = useRoute();
     const { id } = route.params;
     const { newTask, addTask } = useTasks();
-    
+
     const addNewTask = (timetableId) => {
-      newTask.value.startHour = rawStartHour.value.split('T')[1].split(':').slice(0, 2).join(':');
-      newTask.value.endHour = rawEndHour.value.split('T')[1].split(':').slice(0, 2).join(':');
+      newTask.value.startHour = rawStartHour.value
+        .split("T")[1]
+        .split(":")
+        .slice(0, 2)
+        .join(":");
+      newTask.value.endHour = rawEndHour.value
+        .split("T")[1]
+        .split(":")
+        .slice(0, 2)
+        .join(":");
       addTask(timetableId);
     };
 
