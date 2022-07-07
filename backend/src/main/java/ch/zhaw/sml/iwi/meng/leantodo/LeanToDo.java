@@ -123,7 +123,14 @@ public class LeanToDo implements CommandLineRunner {
         Lecture lecture7 = new Lecture("w.2ISPUR", "Interdisziplinärer Schwerpunkt Unternehmensrecht", "bsel", "MB O3.30");
         Lecture lecture8 = new Lecture("w.2ISPVRMmgt", "Interdisziplinärer Schwerpunkt Verwaltungsrecht & Mmgt.", "husi", "MY O4.09");
         Lecture lecture9 = new Lecture("w.2Mind", "Mindfulness / Mindful Leadership", "jehl", "MB O3.18");
-        
+        Lecture lecture10 = new Lecture("w.2WIN", "Einführung Wirtschaftsinformatik", "shui",  "MB O4.16");
+        Lecture lecture11 = new Lecture("w.2BusE2", "Business English2", "decu",  "SW 326");
+        Lecture lecture12 = new Lecture("w.2Mathe1", "Mathematik 1", "bece",  "SW 312");
+        Lecture lecture13 = new Lecture("w.2LT", "Legal Tech", "hakk",  "SW 224");
+        Lecture lecture14 = new Lecture("w.2MR", "Mixed Reality", "kell",  "SW 329");
+        Lecture lecture15 = new Lecture("w.2BWL-WIN", "Einführung BWL", "stid",  "MB O3.14");
+        Lecture lecture16 = new Lecture("w.2CI", "Customer Insights", "muef",  "SW 221");
+
         lectureRepository.save(lecture1);
         lectureRepository.save(lecture2);
         lectureRepository.save(lecture3);
@@ -133,6 +140,13 @@ public class LeanToDo implements CommandLineRunner {
         lectureRepository.save(lecture7);
         lectureRepository.save(lecture8);
         lectureRepository.save(lecture9);
+        lectureRepository.save(lecture10);
+        lectureRepository.save(lecture11);
+        lectureRepository.save(lecture12);
+        lectureRepository.save(lecture13);
+        lectureRepository.save(lecture14);
+        lectureRepository.save(lecture15);
+        lectureRepository.save(lecture16);
 
         // Create and save lecture assignments
         LectureAssignment assignment1 = new LectureAssignment("08:00", "10:00", "Monday", timetable1, lecture1);
@@ -144,24 +158,14 @@ public class LeanToDo implements CommandLineRunner {
         LectureAssignment assignment7 = new LectureAssignment("08:00", "10:00", "Monday", timetable3, lecture7);
         LectureAssignment assignment8 = new LectureAssignment("13:00", "15:00", "Monday", timetable3, lecture8);
         LectureAssignment assignment9 = new LectureAssignment("15:00", "17:00", "Monday", timetable3, lecture9);
-        LectureAssignment assignment10 = new LectureAssignment("08:00", "10:00", "Tuesday", timetable1, lecture5);
-        LectureAssignment assignment11 = new LectureAssignment("15:00", "17:00", "Tuesday", timetable1, lecture6);
-        LectureAssignment assignment12 = new LectureAssignment("17:00", "19:00", "Tuesday", timetable1, lecture7);
-        LectureAssignment assignment13 = new LectureAssignment("10:00", "12:00", "Tuesday", timetable2, lecture1);
-        LectureAssignment assignment14 = new LectureAssignment("13:00", "15:00", "Tuesday", timetable2, lecture2);
-        LectureAssignment assignment15 = new LectureAssignment("17:00", "19:00", "Tuesday", timetable2, lecture3);
-        LectureAssignment assignment16 = new LectureAssignment("08:00", "10:00", "Wednesday", timetable3, lecture1);
-        LectureAssignment assignment17 = new LectureAssignment("13:00", "15:00", "Wednesday", timetable3, lecture2);
-        LectureAssignment assignment18 = new LectureAssignment("15:00", "17:00", "Wednesday", timetable3, lecture3);
-        LectureAssignment assignment19 = new LectureAssignment("08:00", "10:00", "Wednesday", timetable1, lecture8);
-        LectureAssignment assignment20 = new LectureAssignment("13:00", "15:00", "Wednesday", timetable1, lecture9);
-        LectureAssignment assignment21 = new LectureAssignment("15:00", "17:00", "Thursday", timetable1, lecture4);
-        LectureAssignment assignment22 = new LectureAssignment("08:00", "10:00", "Thursday", timetable2, lecture7);
-        LectureAssignment assignment23 = new LectureAssignment("13:00", "15:00", "Thursday", timetable2, lecture8);
-        LectureAssignment assignment24 = new LectureAssignment("15:00", "17:00", "Thursday", timetable2, lecture9);
-        LectureAssignment assignment25 = new LectureAssignment("08:00", "10:00", "Friday", timetable3, lecture4);
-        LectureAssignment assignment26 = new LectureAssignment("13:00", "15:00", "Friday", timetable3, lecture5);
-        LectureAssignment assignment27 = new LectureAssignment("15:00", "17:00", "Friday", timetable3, lecture6);
+        LectureAssignment assignment10 = new LectureAssignment("08:00", "10:00", "Tuesday", timetable1, lecture10);
+        LectureAssignment assignment11 = new LectureAssignment("15:00", "17:00", "Tuesday", timetable1, lecture11);
+        LectureAssignment assignment12 = new LectureAssignment("17:00", "19:00", "Tuesday", timetable1, lecture12);
+        LectureAssignment assignment13 = new LectureAssignment("10:00", "12:00", "Tuesday", timetable2, lecture13);
+        LectureAssignment assignment14 = new LectureAssignment("13:00", "15:00", "Tuesday", timetable2, lecture14);
+        LectureAssignment assignment15 = new LectureAssignment("17:00", "19:00", "Tuesday", timetable2, lecture15);
+        LectureAssignment assignment16 = new LectureAssignment("13:00", "15:00", "Tuesday", timetable3, lecture16);
+
         assignmentRepository.save(assignment1);
         assignmentRepository.save(assignment2);
         assignmentRepository.save(assignment3);
@@ -178,16 +182,5 @@ public class LeanToDo implements CommandLineRunner {
         assignmentRepository.save(assignment14);
         assignmentRepository.save(assignment15);
         assignmentRepository.save(assignment16);
-        assignmentRepository.save(assignment17);
-        assignmentRepository.save(assignment18);
-        assignmentRepository.save(assignment19);
-        assignmentRepository.save(assignment20);
-        assignmentRepository.save(assignment21);
-        assignmentRepository.save(assignment22);
-        assignmentRepository.save(assignment23);
-        assignmentRepository.save(assignment24);
-        assignmentRepository.save(assignment25);
-        assignmentRepository.save(assignment26);
-        assignmentRepository.save(assignment27);
     }
 }
