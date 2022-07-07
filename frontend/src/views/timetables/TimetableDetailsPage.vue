@@ -31,40 +31,18 @@
                   </ion-card>
                 </ion-col>
                 <ion-col size="9">
-                  <ion-card v-bind:key="lecture" v-for="lecture in lectures"
-                    v-bind:router-link="'/tabs/lectures/' + lecture.id" button>
-                    <ion-card-subtitle
-                      v-if="lecture.lectureAssignments[0].day == day && lecture.lectureAssignments[0].startHour == time[0]">
-                      {{ lecture.room }}</ion-card-subtitle>
-                    <ion-card-title
-                      v-if="lecture.lectureAssignments[0].day == day && lecture.lectureAssignments[0].startHour == time[0]">
-                      {{ lecture.name }}</ion-card-title>
-                  </ion-card>
+                  <div v-bind:key="lecture" v-for="lecture in lectures">
+                    <ion-card 
+                      v-if="lecture.lectureAssignments[0].day == day && lecture.lectureAssignments[0].startHour == time[0]"
+                      v-bind:router-link="'/tabs/lectures/' + lecture.id" button>
+                      <ion-card-subtitle>
+                        {{ lecture.room }}</ion-card-subtitle>
+                      <ion-card-title>
+                        {{ lecture.name }}</ion-card-title>
+                    </ion-card>
+                  </div>
                 </ion-col>
               </ion-row>
-              <!-- <ion-row v-bind:key="lecture" v-for="lecture in lectures">
-                <ion-col size="3">
-                  <ion-card>
-                    <ion-card-title
-                      v-if="lecture.lectureAssignments[0].day == day"
-                      >{{ lecture.lectureAssignments[0].startHour }} <br />
-                      {{
-                        lecture.lectureAssignments[0].endHour
-                      }}</ion-card-title
-                    >
-                  </ion-card>
-                </ion-col>
-                <ion-col size="9">
-                  <ion-card
-                    v-bind:router-link="'/tabs/lectures/' + lecture.id"
-                    button
-                    v-if="lecture.lectureAssignments[0].day == day"
-                  >
-                    <ion-card-subtitle>{{ lecture.room }}</ion-card-subtitle>
-                    <ion-card-title>{{ lecture.name }}</ion-card-title>
-                  </ion-card>
-                </ion-col>
-              </ion-row> -->
             </ion-grid>
           </ion-slide>
         </ion-slides>
@@ -139,3 +117,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+  ion-card {
+    height:50px
+  }
+</style>
