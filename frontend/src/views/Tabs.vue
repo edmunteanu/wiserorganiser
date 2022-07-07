@@ -5,7 +5,7 @@
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="timetables" href="/tabs/timetables">
           <ion-icon :icon="calendarOutline" />
-          <ion-label>Stundenplan</ion-label>
+          <ion-label>Timetable</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="tasks" href="/tabs/tasks">
