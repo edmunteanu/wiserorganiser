@@ -14,10 +14,10 @@
       <div id="container">
         <ion-list>
           <ion-item>
-            <ion-title><strong>Klasse auswählen</strong></ion-title>
+            <ion-title><strong>Choose your class</strong></ion-title>
           </ion-item>
           <ion-item>
-            <ion-label>Klasse</ion-label>
+            <ion-label>Class</ion-label>
             <ion-select
               v-if="timetables.length > 0"
               :placeholder="timetables[0].name"
@@ -52,7 +52,7 @@
             v-bind:router-link="'tasks/new'"
             shape="round"
             class="ion-margin"
-            >Neuer Task</ion-button
+            >New task</ion-button
           >
         </ion-list>
       </div>

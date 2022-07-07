@@ -18,7 +18,7 @@
       <div id="container" class="ion-padding" v-if="lecture">
         <ion-list class="ion-padding">
           <h2>
-            <strong>Lecture Details zur Nr. {{ lecture.id }}</strong>
+            <strong>Lecture Details for No. {{ lecture.id }}</strong>
           </h2>
           <ion-text>
             <h3>Lecture name</h3>

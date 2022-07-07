@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Mein Task</ion-title>
+        <ion-title>My Task</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -15,20 +15,20 @@
           <ion-title size="large">Task</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-list class="ion-padding">
+      <ion-list class="ion-padding" v-if="task">
         <h2>
-          <strong>Task Details zur Nr. {{ id }}</strong>
+          <strong>Task Details for No. {{ task.id }}</strong>
         </h2>
         <ion-text>
-          <h3>Terminiert am</h3>
-          <p>12.10.2022 / 14.00 - 16.00 Uhr</p>
-          <h3>Titel</h3>
-          <p>Do something</p>
-          <h3>Beschreibung</h3>
-          <p>Blablabla</p>
+          <h3>Scheduled on</h3>
+          <p>{{ task.day }} from {{ task.startHour }} to {{ task.endHour }} </p>
+          <h3>Title</h3>
+          <p>{{ task.name }}</p>
+          <h3>Description</h3>
+          <p>{{ task.description }} </p>
         </ion-text>
-        <ion-button shape="round" class="ion-margin">Ändern</ion-button>
-        <ion-button shape="round" class="ion-margin">Speichern</ion-button>
+        <ion-button shape="round" class="ion-margin">Change</ion-button>
+        <ion-button shape="round" class="ion-margin">Save</ion-button>
       </ion-list>
     </ion-content>
   </ion-page>
@@ -48,6 +48,7 @@ import {
 
 import { defineComponent } from "vue";
 import { useRoute } from "vue-router";
+import { useTasks } from "@/composables/useTasks";
 
 export default defineComponent({
   name: "TaskDetailsPage",
@@ -64,9 +65,11 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const { id } = route.params;
+    const { task } = useTasks(id);
 
     return {
       id,
+      task,
     };
   },
 });
